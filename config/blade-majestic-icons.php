@@ -37,7 +37,7 @@ return [
     |
     */
 
-    'class' => 'w-6 h-6',
+    'class' => 'inline-flex align-sub',
 
     /*
     |-----------------------------------------------------------------
@@ -50,8 +50,8 @@ return [
     */
 
     'attributes' => [
-        // 'width' => 50,
-        // 'height' => 50,
+        'width' => 25,
+        'height' => 25,
     ],
 
 ];
