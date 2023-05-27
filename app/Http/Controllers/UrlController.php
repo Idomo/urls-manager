@@ -22,17 +22,22 @@ class UrlController extends Controller{
 
     /**
      * Show the form for creating a new url.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create(){
-        //
+        return view('urls.create-form');
     }
 
     /**
      * Store a newly created url in database.
+     *
      * @param StoreUrlRequest $request
+     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
     public function store(StoreUrlRequest $request){
-        //
+        Url::addUrl($request);
+        return redirect('urls');
     }
 
     /**

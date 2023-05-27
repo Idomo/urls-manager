@@ -1,4 +1,11 @@
 <x-app-layout :title="__('Your URLs')">
+    <!-- Create URL button -->
+    <a href="{{ route('urls.create') }}">
+        <x-primary-button>
+            <x-majestic-plus-line class="mr-1"/> {{ __('Create URL') }}
+        </x-primary-button>
+    </a>
+
     @if(!empty($urls))
         <table class="mt-4 border-collapse table-auto w-full">
             <x-table-head :heads="['#', 'Expanded', 'Shortened']"></x-table-head>
@@ -25,6 +32,10 @@
     @else
         <div class="text-center text-xl">
             {{ __('You don\'t have urls yet.') }}
+            <br>
+            <a href="{{ route('urls.create') }}" class="text-gray-400">
+                <x-majestic-plus-line/> {{ __('Create your first one now!') }}
+            </a>
         </div>
     @endif
 </x-app-layout>
