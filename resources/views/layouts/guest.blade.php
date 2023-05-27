@@ -25,6 +25,16 @@
             <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
                 {{ $slot }}
             </div>
+
+            @if(Route::is('login', 'register'))
+                <div class="text-center mt-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
+                    @if(Route::is('login'))
+                        <a href="{{route('register')}}">{{ __('Don\'t have an account yet? Register now!') }}</a>
+                    @elseif(Route::is('register'))
+                        <a href="{{route('login')}}">{{ __('Already have an account? Login now!') }}</a>
+                    @endif
+                </div>
+            @endif
         </div>
     </body>
 </html>
