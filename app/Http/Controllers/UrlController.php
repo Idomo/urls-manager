@@ -42,19 +42,24 @@ class UrlController extends Controller{
 
     /**
      * Show the form for editing the specified url.
+     *
      * @param Url $url
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(Url $url){
-        //
+        return view('urls.edit-form', ['url' => $url]);
     }
 
     /**
      * Update the specified url in database.
+     *
      * @param UpdateUrlRequest $request
      * @param Url $url
+     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
     public function update(UpdateUrlRequest $request, Url $url){
-        //
+        Url::updateUrl($url, $request);
+        return redirect('/');
     }
 
     /**

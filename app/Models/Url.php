@@ -22,4 +22,17 @@ class Url extends Model{
         $url->shortened = $request['shortened'];
         return $url->save();
     }
+
+    /**
+     * Update the given url
+     *
+     * @param $url
+     * @param $request
+     * @return bool Succession
+     */
+    static public function updateUrl(Url $url, $request){
+        $url->expanded = $request['expanded'];
+        $url->shortened = $request['shortened'];
+        return $url->save();
+    }
 }

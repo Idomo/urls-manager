@@ -8,7 +8,7 @@
 
     @if(!empty($urls))
         <table class="mt-4 border-collapse table-auto w-full">
-            <x-table-head :heads="['#', 'Expanded', 'Shortened']"></x-table-head>
+            <x-table-head :heads="['#', 'Expanded', 'Shortened', 'Manage']"></x-table-head>
             <x-table-body>
                 @foreach($urls as $url)
                     <x-table-tr>
@@ -23,6 +23,11 @@
                             <a href="{{ url($url['shortened']) }}" class="hover:underline">
                                 {{ url($url['shortened']) }}
                                 <x-majestic-open-line class="h-4 w-4"/>
+                            </a>
+                        </x-table-td>
+                        <x-table-td>
+                            <a href="{{ route('urls.edit', $url['id']) }}" class="pl-1 pt-2 pb-1 focus:outline rounded">
+                                <x-majestic-edit-pen-2-line/>
                             </a>
                         </x-table-td>
                     </x-table-tr>
