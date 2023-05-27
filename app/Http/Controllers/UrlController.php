@@ -5,13 +5,19 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUrlRequest;
 use App\Http\Requests\UpdateUrlRequest;
 use App\Models\Url;
+use Illuminate\Support\Facades\Auth;
+use function redirect;
+use function view;
 
 class UrlController extends Controller{
     /**
      * Display a listing of the urls.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index(){
-        //
+        $urls = Url::where('uid', Auth::id())->get();
+        return view('urls.urls-list', ['urls' => $urls]);
     }
 
     /**
