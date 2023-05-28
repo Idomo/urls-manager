@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use function friendlyUrlPath;
 
 class Url extends Model{
     use HasFactory;
@@ -19,7 +20,7 @@ class Url extends Model{
         $url = new self();
         $url->uid = Auth::id();
         $url->expanded = $request['expanded'];
-        $url->shortened = $request['shortened'];
+        $url->shortened = friendlyUrlPath($request['shortened']);
         return $url->save();
     }
 
@@ -32,7 +33,7 @@ class Url extends Model{
      */
     static public function updateUrl(Url $url, $request){
         $url->expanded = $request['expanded'];
-        $url->shortened = $request['shortened'];
+        $url->shortened = friendlyUrlPath($request['shortened']);
         return $url->save();
     }
 }
