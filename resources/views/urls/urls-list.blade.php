@@ -11,7 +11,7 @@
             <!-- URLs table -->
             <table class="mt-4 border-collapse table-auto w-full">
                 <x-table-head
-                    :heads="['#', 'Expanded', 'Shortened', 'Manage']"></x-table-head>
+                    :heads="['#', 'Expanded', 'Shortened', 'Created at', 'Updated at', 'Manage']"></x-table-head>
                 <x-table-body>
                     @foreach($urls as $url)
                         <x-table-tr>
@@ -28,6 +28,8 @@
                                     <x-majestic-open-line class="h-4 w-4"/>
                                 </a>
                             </x-table-td>
+                            <x-table-td>{{$url['created_at']->format('d/m/Y H:i')}}</x-table-td>
+                            <x-table-td>{{$url['updated_at']->format('d/m/Y H:i')}}</x-table-td>
                             <x-table-td>
                                 <a href="{{ route('urls.edit', $url['id']) }}"
                                    class="pl-1 pt-2 pb-1 focus:outline rounded">
