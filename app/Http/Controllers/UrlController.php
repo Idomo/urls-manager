@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DeleteUrlRequest;
 use App\Http\Requests\StoreUrlRequest;
 use App\Http\Requests\UpdateUrlRequest;
 use App\Models\Url;
@@ -64,9 +65,13 @@ class UrlController extends Controller{
 
     /**
      * Remove the specified url from database.
+     *
+     * @param DeleteUrlRequest $request
      * @param Url $url
+     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
-    public function destroy(Url $url){
-        //
+    public function destroy(DeleteUrlRequest $request, Url $url){
+        Url::destroy($url['id']);
+        return redirect('/');
     }
 }
