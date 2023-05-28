@@ -12,6 +12,19 @@ use function view;
 
 class UrlController extends Controller{
     /**
+     * Expand shortened url and redirect to it.
+     * If the shortened url is not exists in the database,
+     * the query will fail and redirect to 404 error page.
+     *
+     * @param string $shortenedUrl
+     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
+     */
+    public function expandUrl(string $shortenedUrl){
+        $url = Url::where('shortened', $shortenedUrl)->firstOrFail();
+        return redirect($url['expanded']);
+    }
+
+    /**
      * Display a listing of the urls.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View

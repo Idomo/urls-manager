@@ -30,3 +30,6 @@ Route::middleware('auth')->group(function(){
 });
 
 require __DIR__.'/auth.php';
+
+# Handle short URLs
+Route::get('/{shortenedUrl}', [UrlController::class, 'expandUrl']);
