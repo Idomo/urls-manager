@@ -11,6 +11,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use function redirect;
 use function view;
 
@@ -30,11 +31,13 @@ class UrlController extends Controller{
 
     /**
      * Display a listing of the urls.
+     * Return search results if requested.
      *
+     * @param Request $request
      * @return Factory|View
      */
-    public function index(){
-        $urls = Url::where('uid', Auth::id())->paginate(5);
+    public function index(Request $request){
+        $urls = Url::searchUrl($request)->paginate(5);
         return view('urls.urls-list', ['urls' => $urls]);
     }
 

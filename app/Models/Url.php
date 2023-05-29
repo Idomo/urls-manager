@@ -4,7 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use function friendlyUrlPath;
 
 class Url extends Model{
@@ -35,5 +37,24 @@ class Url extends Model{
         $url->expanded = $request['expanded'];
         $url->shortened = friendlyUrlPath($request['shortened']);
         return $url->save();
+    }
+
+    /**
+     * Get search results for the request
+     *
+     * @param $request
+     * @return Builder
+     */
+    static public function searchUrl(Request $request){
+        return Url::where([
+            ['uid', Auth::id()],
+            [function($query) use ($request){
+                if(($s = $request->s))
+                    $query->orWhere('id', 'LIKE', '%'.$s.'%')
+                        ->orWhere('expanded', 'LIKE', '%'.$s.'%')
+                        ->orWhere('shortened', 'LIKE', '%'.$s.'%')
+                        ->get();
+            }],
+        ]);
     }
 }
