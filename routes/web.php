@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UrlApiController;
 use App\Http\Controllers\UrlController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,7 @@ Route::middleware('auth')->group(function(){
 });
 
 require __DIR__.'/auth.php';
+require __DIR__.'/api.php';
 
 # Handle short URLs
 Route::get('/{shortenedUrl}', [UrlController::class, 'expandUrl']);
