@@ -7,30 +7,34 @@
     </a>
 
     @if(!empty($urls))
-        <div x-data="{url: '', setUrl(newUrl){this.url = newUrl}}">
+        <div x-data="{url: '', setUrl(newUrl){this.url = newUrl}}" class="overflow-x-auto">
             <!-- URLs table -->
             <table class="mt-4 border-collapse table-auto w-full">
                 <x-table-head
                     :heads="['#', 'Expanded', 'Shortened', 'Created at', 'Updated at', 'Manage']"></x-table-head>
                 <x-table-body>
                     @foreach($urls as $url)
-                        <x-table-tr>
+                        <x-table-tr class="group transition ease-in-out duration-500">
                             <x-table-td>{{ $url['id'] }}</x-table-td>
-                            <x-table-td>
+                            <x-table-td
+                                class="max-w-xs truncate group-hover:whitespace-normal group-hover:overflow-visible">
                                 <a href="{{ $url['expanded'] }}" class="hover:underline">
                                     {{ $url['expanded'] }}
                                     <x-majestic-open-line class="h-4 w-4"/>
                                 </a>
                             </x-table-td>
-                            <x-table-td>
-                                <a href="{{ url($url['shortened']) }}" class="hover:underline">
+                            <x-table-td
+                                class="max-w-xs truncate group-hover:whitespace-normal group-hover:overflow-visible">
+                                <a href="{{ url($url['shortened']) }}" class="hover:underline truncate max-w-xs">
                                     {{ url($url['shortened']) }}
                                     <x-majestic-open-line class="h-4 w-4"/>
                                 </a>
                             </x-table-td>
-                            <x-table-td>{{$url['created_at']->format('d/m/Y H:i')}}</x-table-td>
-                            <x-table-td>{{$url['updated_at']->format('d/m/Y H:i')}}</x-table-td>
-                            <x-table-td>
+                            <x-table-td
+                                class="whitespace-nowrap">{{$url['created_at']->format('d/m/Y H:i')}}</x-table-td>
+                            <x-table-td
+                                class="whitespace-nowrap">{{$url['updated_at']->format('d/m/Y H:i')}}</x-table-td>
+                            <x-table-td class="whitespace-nowrap">
                                 <a href="{{ route('urls.edit', $url['id']) }}"
                                    class="pl-1 pt-2 pb-1 focus:outline rounded">
                                     <x-majestic-edit-pen-2-line/>
