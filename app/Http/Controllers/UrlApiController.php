@@ -77,9 +77,13 @@ class UrlApiController extends Controller{
      *
      * @param UpdateUrlRequest $request
      * @param Url $url
+     *
+     * @return JsonResponse
+     * @responseField success bool The succession of the operation
      */
     public function update(UpdateUrlRequest $request, Url $url){
-        //
+        $success = Url::updateUrl($url, $request);
+        return response()->json(['success' => $success]);
     }
 
     /**
