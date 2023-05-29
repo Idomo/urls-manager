@@ -63,9 +63,13 @@ class UrlApiController extends Controller{
      * Store a newly created url in database
      *
      * @param StoreUrlRequest $request
+     *
+     * @return JsonResponse
+     * @responseField success bool The succession of the operation
      */
     public function store(StoreUrlRequest $request){
-        //
+        $success = Url::addUrl($request);
+        return response()->json(['success' => $success]);
     }
 
     /**
