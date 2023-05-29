@@ -40,9 +40,23 @@ class UrlApiController extends Controller{
      * Get specific url data
      *
      * @param int $urlId
+     *
+     * @return JsonResponse
+     * @responseField success bool The succession of the operation
+     * @responseField url object A URL
+     * @responseField url.id int
+     * @responseField url.uid int
+     * @responseField url.expanded int
+     * @responseField url.shortened int
+     * @responseField url.created_at string
+     * @responseField url.updated_at string
      */
     public function show(int $urlId){
-        //
+        $url = Url::where('uid', Auth::id())->where('id', $urlId)->first();
+        if(!empty($url))
+            return response()->json(['success' => true, 'url' => $url]);
+        else
+            return response()->json(['success' => false], 404);
     }
 
     /**
