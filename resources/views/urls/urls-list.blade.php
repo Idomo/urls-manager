@@ -49,6 +49,9 @@
                 </x-table-body>
             </table>
 
+            <!-- Pagination -->
+            {{ $urls->links() }}
+
             <!-- URL deletion confirmation modal -->
             <x-modal name="confirm-url-deletion" focusable>
                 <form method="post" :action="'{{ route('urls.destroy', '') }}' + '/' + url.id" class="p-6">

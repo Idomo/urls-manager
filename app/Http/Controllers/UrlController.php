@@ -34,7 +34,7 @@ class UrlController extends Controller{
      * @return Factory|View
      */
     public function index(){
-        $urls = Url::where('uid', Auth::id())->get();
+        $urls = Url::where('uid', Auth::id())->paginate(5);
         return view('urls.urls-list', ['urls' => $urls]);
     }
 
