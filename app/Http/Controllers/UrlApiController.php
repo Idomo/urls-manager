@@ -91,8 +91,12 @@ class UrlApiController extends Controller{
      *
      * @param DeleteUrlRequest $request
      * @param Url $url
+     *
+     * @return JsonResponse
+     * @responseField success bool The succession of the operation
      */
     public function destroy(DeleteUrlRequest $request, Url $url){
-        //
+        $success = (bool) Url::destroy($url['id']);
+        return response()->json(['success' => $success]);
     }
 }
