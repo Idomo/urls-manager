@@ -6,13 +6,34 @@ use App\Http\Requests\DeleteUrlRequest;
 use App\Http\Requests\StoreUrlRequest;
 use App\Http\Requests\UpdateUrlRequest;
 use App\Models\Url;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
+use function response;
 
+/**
+ * @group Urls API
+ * An API to CRUD URLs
+ */
 class UrlApiController extends Controller{
     /**
      * Get a list of the urls
+     *
+     * @return JsonResponse
+     * @responseField success bool The succession of the operation
+     * @responseField urls object[] An array with URLs
+     * @responseField urls[].id int
+     * @responseField urls[].uid int
+     * @responseField urls[].expanded int
+     * @responseField urls[].shortened int
+     * @responseField urls[].created_at string
+     * @responseField urls[].updated_at string
      */
     public function index(){
-        //
+        $urls = Url::where('uid', Auth::id())->get()->toArray();
+        if(!empty($urls))
+            return response()->json(['success' => true, 'urls' => $urls]);
+        else
+            return response()->json(['success' => false], 404);
     }
 
     /**
