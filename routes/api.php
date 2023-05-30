@@ -15,5 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => '/api', 'middleware' => 'auth:sanctum'], function(){
+    Route::get('/urls/generate', [UrlApiController::class, 'generateShortenedUrl'])->name('api.urls.generate');
     Route::apiResource('/urls', UrlApiController::class)->names('api.urls');
 });

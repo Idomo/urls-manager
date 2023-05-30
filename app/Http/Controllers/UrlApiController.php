@@ -99,4 +99,16 @@ class UrlApiController extends Controller{
         $success = (bool) Url::destroy($url['id']);
         return response()->json(['success' => $success]);
     }
+
+    /**
+     * Generate unique random shortened url path
+     *
+     * @return JsonResponse
+     * @responseField success bool The succession of the operation
+     * @responseField shortened string The generated shortened path
+     */
+    public function generateShortenedUrl(){
+        $shortenedUrl = Url::generateShortened();
+        return response()->json(['success' => true, 'shortened' => $shortenedUrl]);
+    }
 }

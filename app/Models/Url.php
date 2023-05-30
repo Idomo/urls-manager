@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use function fake;
 use function friendlyUrlPath;
 
 class Url extends Model{
@@ -56,5 +57,18 @@ class Url extends Model{
                         ->get();
             }],
         ]);
+    }
+
+    /**
+     * Generate unique random shortened url path
+     *
+     * @return string
+     */
+    public static function generateShortened(){
+        $shortenedUrl = fake()->unique()->regexify('[A-Za-z0-9]{10}');
+        if(Url::where('shortened', $shortenedUrl)->exists())
+            return Url::generateShortened();
+
+        return $shortenedUrl;
     }
 }
