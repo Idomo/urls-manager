@@ -2,14 +2,30 @@
     @if(!empty($urls))
         <div class="flex items-center">
             <!-- Create URL button -->
-            <a href="{{ route('urls.create') }}" class="flex-none">
+            <a href="{{ route('urls.create') }}" class="flex-none pr-4">
                 <x-primary-button>
                     <x-majestic-plus-line class="mr-1"/> {{ __('Create URL') }}
                 </x-primary-button>
             </a>
 
+            @if(request()->has('s'))
+                <!-- Search reset -->
+                <a href="{{ route('urls.index') }}" title="Reset Search" class="group">
+                    <button data-tooltip-target="tooltip-right" data-tooltip-placement="right" type="button"
+                        class="text-blue-700 hover:text-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center dark:text-blue-600 dark:hover:text-blue-700 dark:focus:ring-blue-800">
+                        <x-majestic-reload-circle-line/>
+                    </button>
+
+                    <div id="tooltip-right" role="tooltip"
+                         class="absolute z-10 invisible group-hover:visible inline-block px-3 py-2.5 text-sm font-medium text-white bg-gray-800 rounded-lg shadow-sm opacity-0 transition-opacity  group-hover:opacity-100 tooltip dark:bg-gray-600">
+                        Reset Search
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
+                </a>
+            @endif
+
             <!-- SearchBar -->
-            <form action="{{ route('urls.index') }}" method="GET" class="flex-1 pl-4">
+            <form action="{{ route('urls.index') }}" method="GET" class="flex-1 pl-1">
                 <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                 <div class="relative">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -21,7 +37,7 @@
                     </div>
                     <input type="search" id="search" name="s" value="{{ request()->query('s') }}"
                            class="block w-full p-2.5 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                           placeholder="Search by url or ID..." required>
+                           placeholder="Search by url or ID...">
                     <button type="submit"
                             class="text-white absolute right-2.5 bottom-1.5 top-1.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         Search
