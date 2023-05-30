@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiTokenController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UrlApiController;
 use App\Http\Controllers\UrlController;
@@ -25,6 +26,11 @@ Route::resource('/urls', UrlController::class)
     ->middleware(['auth', 'verified'])->names('urls');
 
 Route::middleware('auth')->group(function(){
+    # API
+    Route::get('/profile/api', [ApiTokenController::class, 'edit'])->name('profile.api.edit');
+    Route::patch('/profile/api', [ApiTokenController::class, 'update'])->name('profile.api.update');
+
+    # User
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
