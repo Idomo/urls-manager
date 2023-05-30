@@ -29,6 +29,11 @@
             <main>
                 @include('layouts.content')
             </main>
+
+            <!-- Page Footer-->
+            <footer>
+                @include('layouts.footer')
+            </footer>
         </div>
     </body>
 </html>
