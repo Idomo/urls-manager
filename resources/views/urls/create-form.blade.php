@@ -13,7 +13,7 @@
 
             <!-- Shortened URL -->
             <div class="mt-4"
-                 x-data="{shortened: '{{ old('shortened') }}', async generateShortened(){this.shortened = (await (await fetch('/api/urls/generate')).json()).shortened}}">
+                 x-data="{shortened: '{{ old('shortened') }}', async generateShortened(){this.shortened = (await (await fetch('/api/urls/generate', {headers: {'Authorization': 'Bearer {{ request()->user()->createToken('api-token')->plainTextToken }}'}})).json()).shortened}}">
                 <x-input-label for="shortened" :value="__('Shortened URL')" class="mb-1"/>
                 <x-text-input-left-addon :addonValue="url('/') . '/'" id="shortened" class="block w-full" type="text"
                                          name="shortened" x-model="shortened" required autocomplete="off">
