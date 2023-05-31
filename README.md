@@ -9,7 +9,7 @@ With this tool you can create new URLs and view/edit/delete all of your URLs (up
 #### Prepare yourself:
 - Make sure that you have [Composer](https://getcomposer.org/) installed and up-to-date by running `composer self-update`
 - Make sure that you have [NodeJS](https://nodejs.org/en/download) installed and up-to-date by checking `node -v`
-- Make sure that you have [npm](https://www.npmjs.com/package/npm) installed and up-to-date by running `npm i npm`
+- Make sure that you have [npm](https://www.npmjs.com/package/npm) installed and up-to-date by running `npm i -g npm`
 - Download the project's files
 
 
