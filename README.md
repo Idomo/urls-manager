@@ -14,12 +14,15 @@ With this tool you can create new URLs and view/edit/delete all of your URLs (up
 
 
 #### Run some commands:
-- Install the dependencies:
+- Create the project and install the dependencies:
 ```console
-composer require
+composer create-project
+
+npm install
 ```
-- Edit the `.env` file (located in the root directory) and make sure the database info is correct.
 - Start your database server (e.g. MAMP)
+- Create a database (e.g. `urlsManager`)
+- Edit the `.env` file (located in the root directory) and make sure the database info is correct.
 - Create the database tables (You may append the `--seed` flag to fill the database with [some data](#good-to-know)):
 ```console
 php artisan migrate
