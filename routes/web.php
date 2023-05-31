@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function(){
-    return Auth::check() ? redirect('urls') : view('welcome');
+    return redirect(Auth::check() ? 'urls' : 'login');
 })->name('/');
 
 Route::resource('/urls', UrlController::class)
